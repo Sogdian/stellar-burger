@@ -1,6 +1,17 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
-import {TLoginData, TRegisterData} from "@api";
+import {
+  forgotPasswordApi,
+  getUserApi,
+  loginUserApi,
+  logoutApi,
+  registerUserApi,
+  resetPasswordApi,
+  TLoginData,
+  TRegisterData,
+  updateUserApi
+} from '@api';
+import { setCookie } from '../utils/cookie';
 
 interface TUserState {
   isAuthChecked: boolean;
@@ -28,29 +39,64 @@ export const { getUserDataSelector, getIsAuthCheckedSelector } =
 export default userSlice.reducer;
 
 export const registerUser = createAsyncThunk(
-    'auth/register',
+  '/register',
+  async (data: TRegisterData) => {
+    const response = await registerUserApi(data);
+    localStorage.setItem('refreshToken', response.refreshToken);
+    setCookie('accessToken', response.accessToken);
+
+    return response;
+  }
 );
 
 export const loginUser = createAsyncThunk(
-    'auth/login',
+  '/login',
+  async (data: TLoginData) => {
+    const response = await loginUserApi(data);
+    localStorage.setItem('refreshToken', response.refreshToken);
+    setCookie('accessToken', response.accessToken);
+
+    return response;
+  }
 );
 
 export const forgotPassword = createAsyncThunk(
-    'auth/password-reset',
+  '/password-reset',
+  async (data: { email: string }) => {
+    const response = await forgotPasswordApi(data);
+
+    return response;
+  }
 );
 
 export const resetPassword = createAsyncThunk(
-    'auth/password-reset/reset',
+  '/password-reset/reset',
+  async (data: { password: string; token: string }) => {
+    const response = await resetPasswordApi(data);
+
+    return response;
+  }
 );
 
 export const getUser = createAsyncThunk(
-    'auth/user',
-);
+  '/user', async () => {
+  const response = await getUserApi();
+
+  return response;
+});
 
 export const updateUser = createAsyncThunk(
-    'auth/user',
+  'user/update',
+  async (user: TRegisterData) => {
+    const response = await updateUserApi(user);
+
+    return response;
+  }
 );
 
 export const logout = createAsyncThunk(
-    'auth/logout',
-);
+  '/logout', async () => {
+  const response = await logoutApi();
+
+  return response;
+});
