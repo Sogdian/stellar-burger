@@ -78,8 +78,7 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
-export const getUser = createAsyncThunk(
-  '/user', async () => {
+export const getUser = createAsyncThunk('/user', async () => {
   const response = await getUserApi();
 
   return response;
@@ -94,8 +93,7 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk(
-  '/logout', async () => {
+export const logout = createAsyncThunk('/logout', async () => {
   const response = await logoutApi();
 
   return response;
