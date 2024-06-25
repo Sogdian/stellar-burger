@@ -88,8 +88,8 @@ const App = () => {
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
       </Routes>
 
-      {backgroundLocation && (
-        <Routes>
+      <Routes>
+        {backgroundLocation && (
           <Route
             path='/feed/:number'
             element={
@@ -98,6 +98,8 @@ const App = () => {
               </Modal>
             }
           />
+        )}
+        {backgroundLocation && (
           <Route
             path='/ingredients/:id'
             element={
@@ -106,6 +108,8 @@ const App = () => {
               </Modal>
             }
           />
+        )}
+        {backgroundLocation && (
           <Route
             path='/profile/orders/:number'
             element={
@@ -116,8 +120,8 @@ const App = () => {
               </Modal>
             }
           />
-        </Routes>
-      )}
+        )}
+      </Routes>
     </div>
   );
 };
