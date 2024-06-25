@@ -57,5 +57,7 @@ const orderSlice = createSlice({
 
 export const { getOrderSelector, getLoadingOrderSelector } =
   orderSlice.selectors;
+
 export const { resetOrder } = orderSlice.actions;
+
 export default orderSlice.reducer;
