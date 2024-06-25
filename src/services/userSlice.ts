@@ -14,13 +14,17 @@ import {
 import { setCookie } from '../utils/cookie';
 
 interface TUserState {
+  user: TUser | null;
   isAuthChecked: boolean;
-  userData: TUser | null;
+  isAuthenticated: boolean;
+  error: string | null | undefined;
 }
 
 const initialState: TUserState = {
+  user: null,
   isAuthChecked: false,
-  userData: null
+  isAuthenticated: false,
+  error: null
 };
 
 export const userSlice = createSlice({
@@ -28,8 +32,53 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    getUserDataSelector: (state) => state.userData,
+    getUserDataSelector: (state) => state.user,
     getIsAuthCheckedSelector: (state) => state.isAuthChecked
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerUser.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.isAuthChecked = true;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isAuthenticated = true;
+        state.isAuthChecked = true;
+      })
+      .addCase(loginUser.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.isAuthChecked = true;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isAuthChecked = true;
+        state.isAuthChecked = true;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = {
+          email: '',
+          name: ''
+        };
+        state.isAuthenticated = false;
+        state.isAuthChecked = true;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isAuthenticated = true;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isAuthenticated = true;
+        state.isAuthChecked = true;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.isAuthChecked = true;
+      });
   }
 });
 
