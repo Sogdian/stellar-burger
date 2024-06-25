@@ -1,4 +1,3 @@
-// import { useSelector } from '../../services/store';
 import React from 'react';
 import {
   getIsAuthCheckedSelector,
