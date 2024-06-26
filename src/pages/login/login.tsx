@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent, useState } from 'react';
 import { LoginUI } from '@ui-pages';
 import { useDispatch, useSelector } from '../../services/store';
-import { getIsAuthCheckedSelector, loginUser } from '../../services/userSlice';
+import { getIsAuthSelector, loginUser } from '../../services/userSlice';
 import { Navigate } from 'react-router-dom';
 
 export const Login: FC = () => {
@@ -9,7 +9,7 @@ export const Login: FC = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(getIsAuthCheckedSelector);
+  const isAuthenticated = useSelector(getIsAuthSelector);
   if (isAuthenticated) {
     return <Navigate to={'/'} />;
   }

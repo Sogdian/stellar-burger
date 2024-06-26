@@ -34,7 +34,8 @@ export const userSlice = createSlice({
   selectors: {
     getUserDataSelector: (state) => state.user,
     getIsAuthCheckedSelector: (state) => state.isAuthChecked,
-    getUserNameSelector: (state) => state.user?.name
+    getUserNameSelector: (state) => state.user?.name,
+    getIsAuthSelector: (state) => state.isAuthenticated
   },
   extraReducers: (builder) => {
     builder
@@ -86,7 +87,8 @@ export const userSlice = createSlice({
 export const {
   getUserDataSelector,
   getIsAuthCheckedSelector,
-  getUserNameSelector
+  getUserNameSelector,
+  getIsAuthSelector
 } = userSlice.selectors;
 
 export default userSlice.reducer;
