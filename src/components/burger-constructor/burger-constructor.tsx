@@ -9,8 +9,8 @@ import {
 import { getUserDataSelector } from '../../services/userSlice';
 import {
   createOrder,
-  getLoadingOrderSelector,
-  getOrderSelector,
+  getOrderRequest,
+  getOrderModalData,
   resetOrder
 } from '../../services/orderSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -18,8 +18,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export const BurgerConstructor: FC = () => {
   const user = useSelector(getUserDataSelector);
   const constructorItems = useSelector(getItemsSelector);
-  const orderRequest = useSelector(getLoadingOrderSelector);
-  const orderModalData = useSelector(getOrderSelector);
+  const orderRequest = useSelector(getOrderRequest);
+  const orderModalData = useSelector(getOrderModalData);
 
   const navigate = useNavigate();
   const location = useLocation();
