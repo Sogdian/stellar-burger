@@ -5,21 +5,21 @@ import { useDispatch, useSelector } from '../../services/store';
 import {
   clearIngredients,
   getItemsSelector
-} from '../../services/constructorSlice';
-import { getUserDataSelector } from '../../services/userSlice';
+} from '../../services/constructorItemsSlice';
+import { getUserSelector } from '../../services/userSlice';
 import {
-  createOrder,
-  getOrderRequest,
-  getOrderModalData,
+  orderBurger,
+  getLoadingSelector,
+  getOrderSelector,
   resetOrder
 } from '../../services/orderSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const BurgerConstructor: FC = () => {
-  const user = useSelector(getUserDataSelector);
+  const user = useSelector(getUserSelector);
   const constructorItems = useSelector(getItemsSelector);
-  const orderRequest = useSelector(getOrderRequest);
-  const orderModalData = useSelector(getOrderModalData);
+  const orderRequest = useSelector(getLoadingSelector);
+  const orderModalData = useSelector(getOrderSelector);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,7 +36,7 @@ export const BurgerConstructor: FC = () => {
       navigate('/login', { replace: true, state: { from: location } });
       return;
     }
-    dispatch(createOrder(itemIds));
+    dispatch(orderBurger(itemIds));
   };
 
   const closeOrderModal = () => {

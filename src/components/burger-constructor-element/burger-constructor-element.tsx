@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from '../../services/store';
 import {
   getIngredientsSelector,
   moveIngredients
-} from '../../services/constructorSlice';
+} from '../../services/constructorItemsSlice';
 
 export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
   ({ ingredient, index, totalItems }) => {

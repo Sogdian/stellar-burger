@@ -7,12 +7,12 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
 import {
   getIngredients,
-  getLoadingIngredientsSelector
+  getLoadingSelector
 } from '../../services/ingredientsSlice';
 
 export const ConstructorPage: FC = () => {
   /** TODO: взять переменную из стора */
-  const isIngredientsLoading = useSelector(getLoadingIngredientsSelector);
+  const isIngredientsLoading = useSelector(getLoadingSelector);
 
   const dispatch = useDispatch();
   useEffect(() => {

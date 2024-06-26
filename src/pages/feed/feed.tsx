@@ -4,7 +4,7 @@ import { TOrder } from '@utils-types';
 import { FC, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
 import {
-  getFeed,
+  getFeeds,
   getOrdersSelector,
   getLoadingSelector
 } from '../../services/feedSlice';
@@ -20,11 +20,11 @@ export const Feed: FC = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getFeed());
+    dispatch(getFeeds());
   }, [dispatch]);
 
   const handleGetFeed = useCallback(() => {
-    dispatch(getFeed());
+    dispatch(getFeeds());
   }, [dispatch]);
 
   return (

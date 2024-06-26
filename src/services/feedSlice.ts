@@ -2,7 +2,7 @@ import { getFeedsApi, getOrderByNumberApi, getOrdersApi } from '@api';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 
-export const getFeed = createAsyncThunk('feed', async () => {
+export const getFeeds = createAsyncThunk('feed', async () => {
   const response = await getFeedsApi();
 
   return response;
@@ -23,7 +23,7 @@ export const getOrderByNumber = createAsyncThunk(
   }
 );
 
-interface TFeedState {
+interface IFeedState {
   orders: TOrder[];
   orderModalData: TOrder[];
   profileOrders: TOrder[];
@@ -33,7 +33,7 @@ interface TFeedState {
   error: string | null | undefined;
 }
 
-const initialState: TFeedState = {
+const initialState: IFeedState = {
   orders: [],
   orderModalData: [],
   profileOrders: [],
@@ -49,13 +49,13 @@ const feedSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getFeed.fulfilled, (state, action) => {
+      .addCase(getFeeds.fulfilled, (state, action) => {
         state.loading = false;
         state.total = action.payload.total;
         state.totalToday = action.payload.totalToday;
         state.orders = action.payload.orders;
       })
-      .addCase(getFeed.rejected, (state, action) => {
+      .addCase(getFeeds.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
@@ -77,22 +77,22 @@ const feedSlice = createSlice({
       });
   },
   selectors: {
-    getLoadingSelector: (state) => state.loading,
     getOrdersSelector: (state) => state.orders,
+    getOrderModalDataSelector: (state) => state.orderModalData[0],
     getProfileOrdersSelector: (state) => state.profileOrders,
     getTotalSelector: (state) => state.total,
     getTotalTodaySelector: (state) => state.totalToday,
-    getOrderModalDataSelector: (state) => state.orderModalData[0]
+    getLoadingSelector: (state) => state.loading
   }
 });
 
 export const {
-  getLoadingSelector,
   getOrdersSelector,
+  getOrderModalDataSelector,
   getProfileOrdersSelector,
   getTotalSelector,
   getTotalTodaySelector,
-  getOrderModalDataSelector
+  getLoadingSelector
 } = feedSlice.selectors;
 
 export default feedSlice.reducer;

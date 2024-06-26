@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   getIsAuthCheckedSelector,
-  getUserDataSelector
+  getUserSelector
 } from '../../services/userSlice';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Preloader } from '@ui';
@@ -17,7 +17,7 @@ export const ProtectedRoute = ({
   onlyUnAuth
 }: ProtectedRouteProps) => {
   const isAuthChecked = useSelector(getIsAuthCheckedSelector);
-  const user = useSelector(getUserDataSelector);
+  const user = useSelector(getUserSelector);
 
   const location = useLocation();
 

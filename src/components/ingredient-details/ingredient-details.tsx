@@ -3,7 +3,7 @@ import { Preloader, IngredientDetailsUI } from '@ui';
 import { useSelector } from '../../services/store';
 import {
   getIngredientsSelector,
-  getLoadingIngredientsSelector
+  getLoadingSelector
 } from '../../services/ingredientsSlice';
 import { useParams } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ export const IngredientDetails: FC = () => {
   );
 
   const params = useParams();
-  const isIngredientsLoading = useSelector(getLoadingIngredientsSelector);
+  const isIngredientsLoading = useSelector(getLoadingSelector);
 
   if (!ingredientData) {
     return <Preloader />;
