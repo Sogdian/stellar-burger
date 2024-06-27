@@ -6,7 +6,5 @@ import { getUserNameSelector } from '../../services/userSlice';
 export const AppHeader: FC = () => {
   const userName = useSelector(getUserNameSelector);
 
-  return (
-    <AppHeaderUI userName={userName ? userName : 'Пользователь не залогинен'} />
-  );
+  return <AppHeaderUI userName={userName ? userName : 'Личный кабинет'} />;
 };

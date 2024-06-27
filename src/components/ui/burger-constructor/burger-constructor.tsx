@@ -70,7 +70,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       <div
         className={`${styles.noBuns} ${styles.noBunsBottom} ml-8 mb-4 mr-5 text text_type_main-default`}
       >
-        Выберите булки
+        Выберите соусы
       </div>
     )}
     <div className={`${styles.total} mt-10 mr-4`}>

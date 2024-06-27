@@ -22,17 +22,18 @@ export const Register: FC = () => {
     if (!userName || !email) {
       return;
     }
+
     dispatch(
       registerUser({
         name: userName,
-        email,
-        password
+        email: email,
+        password: password
       })
     );
   };
 
-  if (isAuthenticated) {
-    return <Navigate to={'/'} />;
+  if (!isAuthenticated) {
+    return <Navigate to={'/'} replace />;
   }
 
   return (
