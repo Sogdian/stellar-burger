@@ -9,7 +9,7 @@ import {
   TRegisterData,
   updateUserApi
 } from '@api';
-import { setCookie, deleteCookie } from '../utils/cookie';
+import { deleteCookie, setCookie } from '../utils/cookie';
 
 export const registerUser = createAsyncThunk(
   'register',
@@ -30,23 +30,21 @@ export const loginUser = createAsyncThunk('login', async (data: TLoginData) => {
   return response;
 });
 
-export const getUser = createAsyncThunk('user', async () => {
-  const response = await getUserApi();
-
-  return response;
-});
+export const getUser = createAsyncThunk(
+  'getUser',
+  async () => await getUserApi()
+);
 
 export const updateUser = createAsyncThunk(
-  'update',
+  'updateUser',
   async (data: Partial<TRegisterData>) => {
     await updateUserApi(data);
-    const updatedUser = getUserApi();
 
-    return updatedUser;
+    return getUserApi();
   }
 );
 
-export const logout = createAsyncThunk('logout', async () => {
+export const logout = createAsyncThunk('logoutUser', async () => {
   await logoutApi();
   localStorage.removeItem('refreshToken');
   deleteCookie('accessToken');
@@ -92,10 +90,6 @@ export const userSlice = createSlice({
         state.isAuthChecked = true;
         state.isAuthChecked = true;
       })
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isAuthenticated = true;
-      })
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthenticated = true;
@@ -105,8 +99,9 @@ export const userSlice = createSlice({
         state.loginError = action.error.message;
         state.isAuthChecked = true;
       })
-      .addCase(logout.pending, (state) => {
-        state.logoutError = null;
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isAuthenticated = true;
       })
       .addCase(logout.rejected, (state, action) => {
         state.logoutError = action.error.message;

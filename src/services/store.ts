@@ -13,9 +13,9 @@ import {
 
 export const rootReducer = combineReducers({
   user: userReducer,
-  ingredients: ingredientsReducer,
-  order: orderReducer,
   constructorItems: constructorReducer,
+  order: orderReducer,
+  ingredients: ingredientsReducer,
   feed: feedReducer
 });
 

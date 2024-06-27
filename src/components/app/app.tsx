@@ -18,6 +18,7 @@ import { ProtectedRoute } from '../protected-route/protected-route';
 import { useEffect } from 'react';
 import { useDispatch } from '../../services/store';
 import { getUser } from '../../services/userSlice';
+import { getIngredients } from '../../services/ingredientsSlice';
 
 const App = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getUser());
+    dispatch(getIngredients());
   }, [dispatch]);
 
   return (
@@ -36,18 +38,18 @@ const App = () => {
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
         <Route
-          path='/register'
-          element={
-            <ProtectedRoute onlyUnAuth>
-              <Register />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path='/login'
           element={
             <ProtectedRoute onlyUnAuth>
               <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            <ProtectedRoute onlyUnAuth>
+              <Register />
             </ProtectedRoute>
           }
         />
@@ -85,6 +87,7 @@ const App = () => {
         />
         <Route path='*' element={<NotFound404 />} />
         <Route path='/feed/:number' element={<OrderInfo />} />
+        <Route path='/ingredients/:id' element={<IngredientDetails />} />
         <Route
           path='/profile/orders/:number'
           element={
@@ -93,7 +96,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path='/ingredients/:id' element={<IngredientDetails />} />
       </Routes>
 
       <Routes>
