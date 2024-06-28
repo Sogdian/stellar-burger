@@ -9,7 +9,7 @@ import {
   getOrdersSelector,
   getOrderByNumber,
   getOrderModalDataSelector
-} from '../../services/feedSlice';
+} from '../../services/orderSlice';
 
 export const OrderInfo: FC = () => {
   /** TODO: взять переменные orderData и ingredients из стора */
