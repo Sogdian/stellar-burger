@@ -59,6 +59,9 @@ export const feedSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+      .addCase(getOrders.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getOrders.fulfilled, (state, action) => {
         state.loading = false;
         state.profileOrders = action.payload;

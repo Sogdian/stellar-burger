@@ -13,7 +13,6 @@ export const IngredientsCategory = forwardRef<
   const burgerConstructor = useSelector(getItemsSelector);
 
   const ingredientsCounters = useMemo(() => {
-    // const { bun, ingredients } = burgerConstructor;
     const bun = burgerConstructor.bun;
     const ingredients = burgerConstructor.ingredients;
 
