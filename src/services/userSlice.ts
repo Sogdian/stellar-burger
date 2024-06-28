@@ -54,16 +54,14 @@ interface IUserState {
   user: TUser | null;
   isAuthChecked: boolean;
   isAuthenticated: boolean;
-  loginError: string | null | undefined;
-  logoutError: string | null | undefined;
+  error: string | null | undefined;
 }
 
 const initialState: IUserState = {
   user: null,
   isAuthChecked: false,
   isAuthenticated: false,
-  loginError: null,
-  logoutError: null
+  error: null
 };
 
 export const userSlice = createSlice({
@@ -72,39 +70,48 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(registerUser.pending, (state) => {
+        state.error = null;
+      })
       .addCase(registerUser.rejected, (state, action) => {
-        state.loginError = action.error.message;
-        state.isAuthChecked = true;
+        state.error = action.error.message;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthenticated = true;
         state.isAuthChecked = true;
-      })
+      });
+
+    builder
       .addCase(loginUser.rejected, (state, action) => {
-        state.loginError = action.error.message;
+        state.error = action.error.message;
         state.isAuthChecked = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthChecked = true;
         state.isAuthChecked = true;
-      })
+      });
+
+    builder
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthenticated = true;
         state.isAuthChecked = true;
       })
       .addCase(getUser.rejected, (state, action) => {
-        state.loginError = action.error.message;
+        state.error = action.error.message;
         state.isAuthChecked = true;
-      })
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isAuthenticated = true;
-      })
+      });
+
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.user = action.payload.user;
+      state.isAuthenticated = true;
+    });
+
+    builder
       .addCase(logout.rejected, (state, action) => {
-        state.logoutError = action.error.message;
+        state.error = action.error.message;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;

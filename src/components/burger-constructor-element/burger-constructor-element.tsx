@@ -4,7 +4,7 @@ import { BurgerConstructorElementProps } from './type';
 import { useDispatch, useSelector } from '../../services/store';
 import {
   getIngredientsSelector,
-  moveIngredients
+  removeIngredients
 } from '../../services/constructorItemsSlice';
 
 export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
@@ -17,7 +17,7 @@ export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
       const currentItem = updatedIngredients[index];
       updatedIngredients[index] = updatedIngredients[index + 1];
       updatedIngredients[index + 1] = currentItem;
-      dispatch(moveIngredients(updatedIngredients));
+      dispatch(removeIngredients(updatedIngredients));
     };
 
     const handleMoveUp = () => {
@@ -25,13 +25,11 @@ export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
       const currentItem = updatedIngredients[index];
       updatedIngredients[index] = updatedIngredients[index - 1];
       updatedIngredients[index - 1] = currentItem;
-      dispatch(moveIngredients(updatedIngredients));
+      dispatch(removeIngredients(updatedIngredients));
     };
 
     const handleClose = () => {
-      const updatedIngredients = [...constructorIngredients];
-      updatedIngredients.splice(index, 1);
-      dispatch(moveIngredients(updatedIngredients));
+      dispatch(removeIngredients(ingredient.id));
     };
 
     return (

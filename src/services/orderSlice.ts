@@ -83,7 +83,9 @@ export const orderSlice = createSlice({
       .addCase(orderBurger.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
+      });
+
+    builder
       .addCase(getFeeds.fulfilled, (state, action) => {
         state.loading = false;
         state.total = action.payload.total;
@@ -91,9 +93,14 @@ export const orderSlice = createSlice({
         state.feedItems = action.payload.orders;
       })
       .addCase(getFeeds.rejected, (state, action) => {
+        state.feedItems = [];
+        state.total = 0;
+        state.totalToday = 0;
         state.loading = false;
         state.error = action.error.message;
-      })
+      });
+
+    builder
       .addCase(getOrders.pending, (state) => {
         state.loading = true;
       })
@@ -104,7 +111,9 @@ export const orderSlice = createSlice({
       .addCase(getOrders.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
+      });
+
+    builder
       .addCase(getOrderByNumber.fulfilled, (state, action) => {
         state.loading = false;
         state.orderModalData = action.payload.orders;
