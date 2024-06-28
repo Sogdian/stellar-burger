@@ -103,9 +103,11 @@ const App = () => {
           <Route
             path='/feed/:number'
             element={
-              <Modal title='Заказ' onClose={() => navigate('/feed')}>
-                <OrderInfo />
-              </Modal>
+              <Modal
+                title='Заказ'
+                children={<OrderInfo />}
+                onClose={() => navigate('/feed')}
+              />
             }
           />
         )}
@@ -113,9 +115,11 @@ const App = () => {
           <Route
             path='/ingredients/:id'
             element={
-              <Modal title='Детали ингредиента' onClose={() => navigate('/')}>
-                <IngredientDetails />
-              </Modal>
+              <Modal
+                title='Детали ингредиента'
+                children={<IngredientDetails />}
+                onClose={() => navigate('/')}
+              />
             }
           />
         )}
@@ -123,11 +127,15 @@ const App = () => {
           <Route
             path='/profile/orders/:number'
             element={
-              <Modal title='Заказ' onClose={() => navigate('/profile/orders')}>
-                <ProtectedRoute>
-                  <OrderInfo />
-                </ProtectedRoute>
-              </Modal>
+              <Modal
+                title='Заказ'
+                children={
+                  <ProtectedRoute>
+                    <OrderInfo />
+                  </ProtectedRoute>
+                }
+                onClose={() => navigate('/profile/orders')}
+              />
             }
           />
         )}
