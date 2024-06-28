@@ -11,7 +11,7 @@ const initialState: IConstructorState = {
   ingredients: []
 };
 
-const constructorItemsSlice = createSlice({
+export const constructorItemsSlice = createSlice({
   name: 'constructorItems',
   initialState,
   reducers: {
@@ -49,4 +49,3 @@ export const { getItemsSelector, getIngredientsSelector } =
 
 export const { addIngredient, moveIngredients, clearIngredients } =
   constructorItemsSlice.actions;
-export default constructorItemsSlice.reducer;

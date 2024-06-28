@@ -43,7 +43,7 @@ const initialState: IFeedState = {
   error: null
 };
 
-const feedSlice = createSlice({
+export const feedSlice = createSlice({
   name: 'feed',
   initialState,
   reducers: {},
@@ -94,5 +94,3 @@ export const {
   getTotalTodaySelector,
   getLoadingSelector
 } = feedSlice.selectors;
-
-export default feedSlice.reducer;

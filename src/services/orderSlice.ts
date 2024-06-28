@@ -24,7 +24,7 @@ const initialState: IOrderState = {
   loading: false
 };
 
-const orderSlice = createSlice({
+export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
@@ -58,5 +58,3 @@ const orderSlice = createSlice({
 export const { getOrderSelector, getLoadingSelector } = orderSlice.selectors;
 
 export const { resetOrder } = orderSlice.actions;
-
-export default orderSlice.reducer;

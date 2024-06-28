@@ -126,5 +126,3 @@ export const {
   getUserNameSelector,
   getIsAuthSelector
 } = userSlice.selectors;
-
-export default userSlice.reducer;
