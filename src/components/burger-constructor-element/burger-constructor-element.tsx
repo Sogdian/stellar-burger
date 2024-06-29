@@ -17,6 +17,7 @@ export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
       const currentItem = updatedIngredients[index];
       updatedIngredients[index] = updatedIngredients[index + 1];
       updatedIngredients[index + 1] = currentItem;
+
       dispatch(removeIngredients(updatedIngredients));
     };
 
@@ -25,11 +26,15 @@ export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
       const currentItem = updatedIngredients[index];
       updatedIngredients[index] = updatedIngredients[index - 1];
       updatedIngredients[index - 1] = currentItem;
+
       dispatch(removeIngredients(updatedIngredients));
     };
 
     const handleClose = () => {
-      dispatch(removeIngredients(ingredient.id));
+      const updatedIngredients = [...constructorIngredients];
+      updatedIngredients.splice(index, 1);
+
+      dispatch(removeIngredients(updatedIngredients));
     };
 
     return (
