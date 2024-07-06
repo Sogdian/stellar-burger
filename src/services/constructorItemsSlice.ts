@@ -28,11 +28,10 @@ export const constructorItemsSlice = createSlice({
         payload: { ...ingredients, id: uuidv4() }
       })
     },
-    removeIngredients: (
-      state,
-      action: PayloadAction<TConstructorIngredient[]>
-    ) => {
-      state.ingredients = action.payload;
+    removeIngredients: (state, action) => {
+      state.ingredients = state.ingredients.filter(
+        (item) => item.id !== action.payload
+      );
     },
     clearIngredients: (state) => (state = initialState)
   },

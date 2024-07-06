@@ -31,10 +31,7 @@ export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
     };
 
     const handleClose = () => {
-      const updatedIngredients = [...constructorIngredients];
-      updatedIngredients.splice(index, 1);
-
-      dispatch(removeIngredients(updatedIngredients));
+      dispatch(removeIngredients(ingredient.id));
     };
 
     return (
