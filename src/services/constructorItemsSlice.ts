@@ -33,6 +33,16 @@ export const constructorItemsSlice = createSlice({
         (item) => item.id !== action.payload
       );
     },
+    moveIngredient(state, action) {
+      const { index, step } = action.payload;
+      const payloadIndex = index + step;
+
+      if (payloadIndex >= 0 && payloadIndex < state.ingredients.length) {
+        const temp = state.ingredients[index];
+        state.ingredients[index] = state.ingredients[payloadIndex];
+        state.ingredients[payloadIndex] = temp;
+      }
+    },
     clearIngredients: (state) => (state = initialState)
   },
   selectors: {
@@ -44,7 +54,11 @@ export const constructorItemsSlice = createSlice({
 export const { getItemsSelector, getIngredientsSelector } =
   constructorItemsSlice.selectors;
 
-export const { addIngredient, removeIngredients, clearIngredients } =
-  constructorItemsSlice.actions;
+export const {
+  addIngredient,
+  removeIngredients,
+  moveIngredient,
+  clearIngredients
+} = constructorItemsSlice.actions;
 
 export default constructorItemsSlice.reducer;
