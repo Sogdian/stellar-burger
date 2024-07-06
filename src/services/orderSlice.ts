@@ -145,3 +145,5 @@ export const {
 } = orderSlice.selectors;
 
 export const { resetOrder } = orderSlice.actions;
+
+export default orderSlice.reducer;

@@ -47,3 +47,5 @@ export const { getItemsSelector, getIngredientsSelector } =
 
 export const { addIngredient, removeIngredients, clearIngredients } =
   constructorItemsSlice.actions;
+
+export default constructorItemsSlice.reducer;

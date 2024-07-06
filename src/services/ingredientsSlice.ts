@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils-types';
-import { getIngredientsApi } from '@api';
+import { getIngredientsApi } from '../utils/burger-api';
 
 export interface IIngredientsState {
   ingredients: TIngredient[];
@@ -48,3 +48,5 @@ export const ingredientsSlice = createSlice({
 
 export const { getIngredientsSelector, getLoadingSelector } =
   ingredientsSlice.selectors;
+
+export default ingredientsSlice.reducer;

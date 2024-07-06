@@ -8,7 +8,7 @@ import {
   TLoginData,
   TRegisterData,
   updateUserApi
-} from '@api';
+} from '../utils/burger-api';
 import { deleteCookie, setCookie } from '../utils/cookie';
 
 export const registerUser = createAsyncThunk(
@@ -133,3 +133,5 @@ export const {
   getUserNameSelector,
   getIsAuthSelector
 } = userSlice.selectors;
+
+export default userSlice.reducer;
