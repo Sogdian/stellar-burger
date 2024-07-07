@@ -105,11 +105,6 @@ describe('constructor', () => {
       moveIngredient({ index: 1, step: -1 })
     );
 
-    const actual = {
-      ...initialState,
-      ingredients: []
-    };
-
     expect(expected.ingredients[0]).toEqual(moveTestIngredient_2);
     expect(expected.ingredients[1]).toEqual(moveTestIngredient_1);
   });
