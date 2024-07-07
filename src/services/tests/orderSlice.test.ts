@@ -31,16 +31,19 @@ describe('orderSlice', () => {
   });
 
   test('orderBurger', () => {
-    const orderTest = { order: 'OrderTest' };
+    const orderTest = { name: 'TestName', order: 'OrderTest' };
     const action = {
       type: orderBurger.fulfilled.type,
       payload: orderTest
     };
     const state = reducer(initialState, action);
 
-    const expected = state.order;
-    const actual = orderTest.order;
+    const expected = {
+      name: state.name,
+      order: state.order
+    };
+    const actual = orderTest;
 
-    expect(expected).toBe(actual);
+    expect(expected).toStrictEqual(actual);
   });
 });
