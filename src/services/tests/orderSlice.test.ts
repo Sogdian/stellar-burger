@@ -1,19 +1,18 @@
-import reducer, { getOrders } from '../orderSlice';
+import reducer, { getOrders, orderBurger } from '../orderSlice';
 
 describe('orderSlice', () => {
+  const initialState = {
+    profileOrders: [],
+    order: null,
+    name: null,
+    error: null,
+    loading: false,
+    feedItems: [],
+    orderModalData: [],
+    total: null,
+    totalToday: null
+  };
   test('getOrders', async () => {
-    const initialState = {
-      profileOrders: [],
-      order: null,
-      name: null,
-      error: null,
-      loading: false,
-      feedItems: [],
-      orderModalData: [],
-      total: null,
-      totalToday: null
-    };
-
     const profileOrdersTest = [
       { _id: '1', status: 'status', name: 'name', number: '1' }
     ];
@@ -29,5 +28,19 @@ describe('orderSlice', () => {
     };
 
     expect(expected).toEqual(actual);
+  });
+
+  test('orderBurger', () => {
+    const orderTest = { order: 'OrderTest' };
+    const action = {
+      type: orderBurger.fulfilled.type,
+      payload: orderTest
+    };
+    const state = reducer(initialState, action);
+
+    const expected = state.order;
+    const actual = orderTest.order;
+
+    expect(expected).toBe(actual);
   });
 });
