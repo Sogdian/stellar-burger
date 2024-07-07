@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from '../src/services/store';
+import { rootReducer } from '../store';
 
 describe('rootReducer', () => {
   test('Проверка правильной инициализации rootReducer', () => {

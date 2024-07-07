@@ -3,7 +3,7 @@ import constructorItemsReducer, {
   initialState,
   moveIngredient,
   removeIngredients
-} from '../src/services/constructorItemsSlice';
+} from '../constructorItemsSlice';
 describe('constructor', () => {
   test('Добавление ингредиента', () => {
     const addTestIngredient = {
