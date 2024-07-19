@@ -1,7 +1,7 @@
 describe('Тесты на конструктор', () => {
   beforeEach('перехват запроса на эндпоинт', () => {
     cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
-    cy.intercept('GET', '/api/auth/user', { fixture: 'user.json' })
+    cy.intercept('GET', '/api/auth/user', { fixture: 'user.json' });
 
     cy.visit('');
   });
@@ -11,6 +11,31 @@ describe('Тесты на конструктор', () => {
     button.contains('Добавить');
     button.click();
 
-    cy.get('.constructor-element__row').should('contain', 'булка');
+    cy.get('.constructor-element__row').should(
+      'contain',
+      'Краторная булка N-200i'
+    );
+  });
+
+  it('Добавление начинки в конструктор', () => {
+    const button = cy.get(`[data-cy=AddMains]`);
+    button.contains('Добавить');
+    button.click();
+
+    cy.get('.pI008xZIIooxWwNA5NJT').should(
+      'contain',
+      'Биокотлета из марсианской Магнолии'
+    );
+  });
+
+  it('Добавление соуса в конструктор', () => {
+    const button = cy.get(`[data-cy=AddSauces]`);
+    button.contains('Добавить');
+    button.click();
+
+    cy.get('.pI008xZIIooxWwNA5NJT').should(
+      'contain',
+      'Соус Spicy-X'
+    );
   });
 });
