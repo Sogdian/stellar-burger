@@ -1,6 +1,7 @@
 describe('Тесты на конструктор', () => {
   beforeEach('перехват запроса на эндпоинт', () => {
     cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
+    cy.intercept('GET', '/api/auth/user', { fixture: 'user.json' })
 
     cy.visit('');
   });
