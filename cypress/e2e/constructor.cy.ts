@@ -7,31 +7,36 @@ describe('Тесты на конструктор', () => {
   });
 
   it('Добавление булки в конструктор', () => {
-    const button = cy.get('[data-cy=AddBuns]');
-    button.contains('Добавить');
-    button.click();
+    const addBuns = cy.get('[data-cy=AddBuns]');
+    addBuns.contains('Добавить');
+    addBuns.click();
 
-    cy.get('[data-cy=ConstructorItemsBun]').should(
+    cy.get('[data-cy=ConstructorItemsBunTop]').should(
+      'contain',
+      'Краторная булка N-200i'
+    );
+
+    cy.get('[data-cy=ConstructorItemsBunBottom]').should(
       'contain',
       'Краторная булка N-200i'
     );
   });
 
   it('Добавление начинки в конструктор', () => {
-    const button = cy.get('[data-cy=AddMains]');
-    button.contains('Добавить');
-    button.click();
+    const addMains = cy.get('[data-cy=AddMains]');
+    addMains.contains('Добавить');
+    addMains.click();
 
-    cy.get('[data-cy=ConstructorItemsIngredients]').should( //'[data-cy=ConstructorItemsBun]'
+    cy.get('[data-cy=ConstructorItemsIngredients]').should(
       'contain',
       'Биокотлета из марсианской Магнолии'
     );
   });
 
   it('Добавление соуса в конструктор', () => {
-    const button = cy.get('[data-cy=AddSauces]');
-    button.contains('Добавить');
-    button.click();
+    const addSauces = cy.get('[data-cy=AddSauces]');
+    addSauces.contains('Добавить');
+    addSauces.click();
 
     cy.get('[data-cy=ConstructorItemsIngredients]').should(
       'contain',
