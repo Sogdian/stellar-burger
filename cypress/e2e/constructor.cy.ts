@@ -7,33 +7,33 @@ describe('Тесты на конструктор', () => {
   });
 
   it('Добавление булки в конструктор', () => {
-    const button = cy.get(`[data-cy=AddBuns]`);
+    const button = cy.get('[data-cy=AddBuns]');
     button.contains('Добавить');
     button.click();
 
-    cy.get('.constructor-element__row').should(
+    cy.get('[data-cy=ConstructorItemsBun]').should(
       'contain',
       'Краторная булка N-200i'
     );
   });
 
   it('Добавление начинки в конструктор', () => {
-    const button = cy.get(`[data-cy=AddMains]`);
+    const button = cy.get('[data-cy=AddMains]');
     button.contains('Добавить');
     button.click();
 
-    cy.get('.pI008xZIIooxWwNA5NJT').should(
+    cy.get('[data-cy=ConstructorItemsIngredients]').should( //'[data-cy=ConstructorItemsBun]'
       'contain',
       'Биокотлета из марсианской Магнолии'
     );
   });
 
   it('Добавление соуса в конструктор', () => {
-    const button = cy.get(`[data-cy=AddSauces]`);
+    const button = cy.get('[data-cy=AddSauces]');
     button.contains('Добавить');
     button.click();
 
-    cy.get('.pI008xZIIooxWwNA5NJT').should(
+    cy.get('[data-cy=ConstructorItemsIngredients]').should(
       'contain',
       'Соус Spicy-X'
     );
