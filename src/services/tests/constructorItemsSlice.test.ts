@@ -4,7 +4,7 @@ import constructorItemsReducer, {
   moveIngredient,
   removeIngredients
 } from '../constructorItemsSlice';
-describe('constructor', () => {
+describe('Проверка экшенов в редьюсере constructor', () => {
   test('Добавление ингредиента', () => {
     const addTestIngredient = {
       _id: '1',

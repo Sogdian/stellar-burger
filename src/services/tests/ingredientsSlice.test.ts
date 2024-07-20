@@ -1,7 +1,7 @@
 import reducer, { getIngredients } from '../ingredientsSlice';
 
-describe('ingredientsSlice', () => {
-  test('getIngredients', async () => {
+describe('Проверка экшенов в редьюсере ingredientsSlice', () => {
+  test('Проверка экшена getIngredients', async () => {
     const initialState = {
       ingredients: [],
       loading: false,

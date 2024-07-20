@@ -1,6 +1,6 @@
 import reducer, { getOrders, orderBurger } from '../orderSlice';
 
-describe('orderSlice', () => {
+describe('Проверка экшенов в редьюсере orderSlice', () => {
   const initialState = {
     profileOrders: [],
     order: null,
@@ -12,7 +12,7 @@ describe('orderSlice', () => {
     total: null,
     totalToday: null
   };
-  test('getOrders', async () => {
+  test('Проверка экшена getOrders', async () => {
     const profileOrdersTest = [
       { _id: '1', status: 'status', name: 'name', number: '1' }
     ];
@@ -30,7 +30,7 @@ describe('orderSlice', () => {
     expect(expected).toEqual(actual);
   });
 
-  test('orderBurger', () => {
+  test('Проверка экшена orderBurger', () => {
     const orderTest = { name: 'TestName', order: 'OrderTest' };
     const action = {
       type: orderBurger.fulfilled.type,

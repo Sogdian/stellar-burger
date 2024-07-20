@@ -40,8 +40,8 @@ jest.mock('@api', () => ({
   )
 }));
 
-describe('userSlice', () => {
-  test('getUser', async () => {
+describe('Проверка экшенов в редьюсере userSlice', () => {
+  test('Проверка экшена getUser', async () => {
     const store = configureStore({
       reducer: { user: rootReducer }
     });
@@ -60,7 +60,7 @@ describe('userSlice', () => {
     expect(state.user.isAuthenticated).toBeTruthy();
   });
 
-  test('loginUser', async () => {
+  test('Проверка экшена loginUser', async () => {
     const store = configureStore({
       reducer: { user: rootReducer }
     });
