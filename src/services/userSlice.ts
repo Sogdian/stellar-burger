@@ -8,7 +8,7 @@ import {
   TLoginData,
   TRegisterData,
   updateUserApi
-} from '@api';
+} from '../utils/burger-api';
 import { deleteCookie, setCookie } from '../utils/cookie';
 
 export const registerUser = createAsyncThunk(
@@ -90,7 +90,7 @@ export const userSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthChecked = true;
-        state.isAuthChecked = true;
+        state.isAuthenticated = true;
       });
 
     builder
@@ -133,3 +133,5 @@ export const {
   getUserNameSelector,
   getIsAuthSelector
 } = userSlice.selectors;
+
+export default userSlice.reducer;
