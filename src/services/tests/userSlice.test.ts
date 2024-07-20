@@ -6,6 +6,19 @@ const MAIL = 'mail@fortest.com';
 const USER = 'testUser';
 const PASSWORD = 'test';
 
+jest.mock('../../utils/cookie', () => ({
+  setCookie: jest.fn()
+}));
+
+global.localStorage = {
+  setItem: jest.fn(),
+  getItem: jest.fn(() => null),
+  removeItem: jest.fn(),
+  clear: jest.fn(),
+  length: 0,
+  key: jest.fn((index: number) => null)
+};
+
 jest.mock('@api', () => ({
   getUserApi: jest.fn(() =>
     Promise.resolve({
@@ -20,7 +33,9 @@ jest.mock('@api', () => ({
       user: {
         email: MAIL,
         name: USER
-      }
+      },
+      accessToken: 'access-token',
+      refreshToken: 'refresh-token'
     })
   )
 }));

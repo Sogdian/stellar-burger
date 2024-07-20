@@ -90,7 +90,7 @@ export const userSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthChecked = true;
-        state.isAuthChecked = true;
+        state.isAuthenticated = true;
       });
 
     builder
